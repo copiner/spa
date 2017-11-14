@@ -1,0 +1,29 @@
+﻿<!doctype html>
+<html>
+<head>
+  <title>Socket.IO chat</title>
+  <link rel='stylesheet' href='index.css' />
+  <script src="jquery.min.js"></script>
+</head>
+<body>
+<!--这句代码就就这么写-->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+    function sendMessage() {
+        var msg = $("#m").val();
+        socket.emit('chat message', msg);
+        $("#m").val("");
+    }
+    socket.on('chat message', function (msg){
+        $('#messages').append($('<li>').text(msg));
+    });
+
+</script>
+
+<ul id="messages"></ul>
+<form onsubmit="sendMessage(); return false;">
+    <input id="m" autocomplete="off" /><button>Send</button>
+</form>
+</body>
+</html>

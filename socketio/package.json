@@ -1,0 +1,11 @@
+{
+  "name": "socketioinfo",
+  "version": "0.0.1",
+  "description": "app",
+  "dependencies": {
+    "express": "^4.15.5",
+    "node-uuid": "^1.4.8",
+    "socket.io": "^2.0.3",
+    "ws": "^3.2.0"
+  }
+}

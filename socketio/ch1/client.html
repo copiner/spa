@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>WebSocket Echo Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script>
+    var ws = new WebSocket("ws://localhost:8181");
+    ws.onopen = function(e){
+        console.log('Connection to server opened');
+    };
+    function sendMessage(){
+        ws.send($('#message').val());
+    };
+    var str = "{Url:<a target='_blank' href='http://172.16.97.171:7480/mybucketA/66E1CA0C6C235129022426BB1CEB98B066E1CA0C6C235129022426BB1CEB98B0d7afa281-48f1-4f6e-bca5-9e20ac99a239.png?AWSAccessKeyId=6KVDVOOE6ZHLIHZSG9A4&Expires=4614730258&Signature=2GsIj1hPNTrrG4s9kzrnLUTGXUY%3D'>http://172.16.97.171:7480/mybucketA/66E1CA0C6C235129022426BB1CEB98B066E1CA0C6C235129022426BB1CEB98B0d7afa281-48f1-4f6e-bca5-9e20ac99a239.png?AWSAccessKeyId=6KVDVOOE6ZHLIHZSG9A4&Expires=4614730258&Signature=2GsIj1hPNTrrG4s9kzrnLUTGXUY%3D</a>}";
+    var regUrl = /\{Url:.+?\}/g;
+    var newstr= str.replace(regUrl, function(a){
+        var newa = a.replace('{Url:', '').replace("}", '');
+        console.log(newa);
+        return newa;
+    });
+    console.log(newstr);
+    </script>
+</head>
+
+<body >
+    <div class="vertical-center">
+        <div class="container">
+            <p>&nbsp;</p>
+            <form role="form" id="chat_form" onsubmit="sendMessage(); return false;">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="message" id="message"
+                           placeholder="Type text to echo in here" value="" />
+                </div>
+                <button type="button" id="send" class="btn btn-primary"
+                        onclick="sendMessage();">
+                    Send!
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
