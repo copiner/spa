@@ -25,3 +25,8 @@ indexPage.clickHandler = function(ev){
 
   }
 }
+
+window.onload = function(){
+  console.log(document.getElementById("index"));
+  indexPage.init(pageContainer);
+}

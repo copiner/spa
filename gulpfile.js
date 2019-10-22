@@ -28,16 +28,16 @@ task('css', function (cb) {
 });
 
 task('html', function (cb) {
-    src('src/html/*.html')
+    src('src/*.html')
     .pipe(plumber())
     .pipe(gulpif(condition, htmlmin()))
-    .pipe(dest('dist/vue'))
+    .pipe(dest('dist/'))
     .pipe(connect.reload());
     cb();
 });
 
 task('js', function (cb) {
-    src('src/js/*.js')
+    src(['src/js/*.js','src/html/*.js'])
     .pipe(plumber())
     .pipe(gulpif(condition, uglify()))
     .pipe(dest('dist/js'))
@@ -63,7 +63,7 @@ task('image', function (cb) {
 task('watch', function(cb){//监控
 
   let watcher = watch(
-    ['./src/js/*.js','./src/scss/*.scss','./src/html/*.html'],
+    ['./src/js/*.js','./src/scss/*.scss','./src/html/*.js'],
     {events:['change','add','unlink']},
     parallel('css','js','html')
   );
@@ -121,8 +121,8 @@ task('build', series('clean', parallel('config','css','js','image','html'),funct
 //开发环境
 task('server',series('clean','watch',parallel('config','css','js','image','html'),function(){
     connect.server({
-        root: 'app',
-        host:'192.168.1.77',
+        root: 'dist',
+        host:'localhost',
         port: 3000,
         livereload: true,
         middleware: function(connect, opt) {

@@ -1,0 +1,19 @@
+<script type="text/html" id="login">
+  <header>
+    <div class="header-back" data-action="back"></div>
+    <div class="header-titile">登陆</div>
+  </header>
+  <div class="login-container">
+    <form class="login-form">
+      <div class="input-group">
+        <input class="block-input" type="text" name="name" placeholder="请输入用户名" value="">
+      </div>
+      <div class="input-group">
+        <input class="block-input" type="text" name="name" placeholder="请输入密码" value="">
+      </div>
+      <div class="input-group">
+        <button type="button" name="button">登录</button>
+      </div>
+    </form>
+  </div>
+</script>
