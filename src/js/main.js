@@ -1,4 +1,3 @@
-var pageContainer = document.querySelector(".pageContainer");
 function Page(id){
   this.html = document.getElementById(id).textContent;
   this.document = null;
@@ -7,7 +6,9 @@ function Page(id){
 Page.prototype = {
   render: function(dom){
     this.domElement = dom;
-    dom.innerHtml = this.html;
+    console.log(dom)
+    this.domElement.innerHTML = this.html;
+    //dom.innerHTML = this.html;
   },
   getDomObj:function(){//实例中手动重写
     console.error("must be override");

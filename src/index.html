@@ -4,22 +4,15 @@
     <meta charset="utf-8">
     <title>file style</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <!-- <script src="../js/indexPage.js"></script>
-    <script src="../js/loginPage.js"></script>
-    <script src="../js/registerPage.js"></script>
-    <script src="../js/goalPage.js"></script> -->
-
     <script src="../js/main.js"></script>
     <script src="../js/index.js"></script>
-    <script src="../js/login.js"></script>
+    <!-- <script src="../js/login.js"></script>
     <script src="../js/register.js"></script>
-    <script src="../js/goal.js"></script>
+    <script src="../js/goal.js"></script> -->
   </head>
   <body>
-  <script type="text/template" id="index">
+  <script type="text/html" id="index">
     <div class="index-container">
-      <img class="bkImg" src="../img/indexBk.jpg" alt="背景图">
-      <img class="logo" src="../img/logo.png" alt="logo">
       <div class="loginTitle">一种新的生活方式</div>
       <div class="btn-group">
         <button class="btn" data-action="register">注册</button>
@@ -27,6 +20,56 @@
       </div>
     </div>
   </script>
+
+  <script type="text/html" id="login">
+    <header>
+      <div class="header-back" data-action="back"></div>
+      <div class="header-titile">登陆</div>
+    </header>
+    <div class="login-container">
+      <form class="login-form">
+        <div class="input-group">
+          <input class="block-input" type="text" name="name" placeholder="请输入用户名" value="">
+        </div>
+        <div class="input-group">
+          <input class="block-input" type="text" name="name" placeholder="请输入密码" value="">
+        </div>
+        <div class="input-group">
+          <button type="button" name="button">登录</button>
+        </div>
+      </form>
+    </div>
+  </script>
+
+  <script type="text/html" id="register">
+    <header>
+      <div class="header-back" data-action="back"></div>
+      <div class="header-titile">注册</div>
+    </header>
+    <div class="register-container">
+      <form class="register-form">
+        <div class="input-group" data-layout="relative">
+          <input class="block-input" required type="text" name="name" placeholder="手机号或邮箱">
+        </div>
+        <div class="input-group" data-layout="relative">
+          <input class="block-input" required type="password" name="password" placeholder="密码" >
+        </div>
+        <div class="input-group">
+          <button type="button" name="button">下一步</button>
+        </div>
+        <div class="input-group" data-layout="center">
+          <input type="checkbox" name="agree" id="agree">
+          <label for="agree">我已阅读并同意注册协议</label>
+        </div>
+      </form>
+    </div>
+  </script>
+
+  <script type="text/html" id="goal">
+    <h1>goal</h1>
+  </script>
+
+
   <div class="pageContainer"></div>
 
   </body>

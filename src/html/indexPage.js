@@ -1,4 +1,4 @@
-<script type="text/template" id="index">
+<script type="text/html" id="index">
   <div class="index-container">
     <img class="bkImg" src="../img/indexBk.jpg" alt="背景图">
     <img class="logo" src="../img/logo.png" alt="logo">
