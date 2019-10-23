@@ -6,7 +6,7 @@ function Page(id){
 Page.prototype = {
   render: function(dom){
     this.domElement = dom;
-    console.log(dom)
+    // console.log(dom)
     this.domElement.innerHTML = this.html;
     //dom.innerHTML = this.html;
   },

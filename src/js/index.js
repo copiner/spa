@@ -1,8 +1,7 @@
 var indexPage = new Page("index");
-console.log(indexPage)
+//console.log(indexPage)
 indexPage.getDomObj = function(){
   this.btnGroup = this.domElement.querySelector(".btn-group");
-  //console.log(this.domElement.querySelector(".btn-group"))
   this.btnGroup.addEventListener("click",this.clickHandler, false);
 };
 
@@ -17,15 +16,15 @@ indexPage.clickHandler = function(ev){
   switch (action) {
     case "register":
       indexPage.unit();
-      registerPage.init(pageContainer);
+      registerPage.init(rootDiv);
       break;
     case "login":
       indexPage.unit();
-      loginPage.init(pageContainer);
+      loginPage.init(rootDiv);
       break;
     default:
 
   }
 }
-var pageContainer = document.querySelector(".pageContainer");
-indexPage.init(pageContainer);
+var rootDiv = document.querySelector(".root");
+indexPage.init(rootDiv);

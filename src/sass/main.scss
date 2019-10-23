@@ -1,7 +1,7 @@
 body{
   margin:0;
-  font:12px 'microsoft yahei';
   overflow: hidden;
+  background: #ccc;
 }
 
 header{
@@ -18,10 +18,12 @@ header{
 
 header>.header-back{
   position: absolute;
-  width: 20px;
-  height: 30px;
   left: 10px;
-  top:5px;
+  top: 14px;
+  width: 0;
+  height: 0;
+  border: 8px solid #F2F2FC;
+  border-color: #CCCCCC #000000 #CCCCCC #CCCCCC;
 }
 
 .index-container{
@@ -118,8 +120,7 @@ button.btn.btn-block{
 }
 
 .input-group>input[type="checkbox"]{
-  position: absolute;
-  clip:rect(0,0,0,0);
+  vertical-align: bottom;
 }
 .input-group>input{
   display: block;
@@ -142,4 +143,8 @@ input[type="checkbox"]:checked+label::before{
 
 input[type="checkbox"]+label::before{
 
+}
+
+.goal-container h1{
+  text-align: center;
 }

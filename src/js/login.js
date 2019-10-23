@@ -19,10 +19,10 @@ loginPage.formSubmitHandler = function(ev){
   var name = form.name.value;
   var password = form.password.value;
   loginPage.unit();
-  goalPage.init(pageContainer);
+  goalPage.init(rootDiv);
 }
 
 loginPage.clickBackDomHander = function(ev){
   loginPage.unit();
-  indexPage.init(pageContainer);
+  indexPage.init(rootDiv);
 }

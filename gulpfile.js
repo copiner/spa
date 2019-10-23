@@ -9,6 +9,7 @@ const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
 
 const connect = require('gulp-connect');
+const fileinclude = require('gulp-file-include');
 const proxy = require('http-proxy-middleware');//反向代理
 const del = require('del');
 
@@ -29,6 +30,10 @@ task('css', function (cb) {
 
 task('html', function (cb) {
     src('src/*.html')
+    .pipe(fileinclude({
+        prefix: '@@',
+        basepath: '@file'
+     }))
     .pipe(plumber())
     .pipe(gulpif(condition, htmlmin()))
     .pipe(dest('dist/'))
@@ -63,7 +68,7 @@ task('image', function (cb) {
 task('watch', function(cb){//监控
 
   let watcher = watch(
-    ['./src/js/*.js','./src/scss/*.scss','./src/html/*.js',,'./src/index.html'],
+    ['./src/js/*.js','./src/sass/*.scss','./src/html/*.js',,'./src/index.html'],
     {events:['change','add','unlink']},
     parallel('css','js','html')
   );
@@ -123,7 +128,7 @@ task('server',series('clean','watch',parallel('config','css','js','image','html'
     connect.server({
         root: 'dist',
         host:'localhost',
-        port: 3000,
+        port: 8000,
         livereload: true,
         middleware: function(connect, opt) {
             return [

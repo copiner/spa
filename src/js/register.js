@@ -21,12 +21,12 @@ registerPage.formSubmitHandler = function(ev){
   var agree = form.agree.checked;
   if(agree){
     registerPage.unit();
-    goalPage.init(pageContainer);
+    goalPage.init(rootDiv);
   }
 
 }
 
 registerPage.clickBackDomHander = function(ev){
-  loginPage.unit();
-  indexPage.init(pageContainer);
+  registerPage.unit();
+  indexPage.init(rootDiv);
 }
