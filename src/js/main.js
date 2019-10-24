@@ -24,6 +24,7 @@ Page.prototype = {
     container.innerHTML = this.html;
     this.getDomObj(container);
     this._addEventListeners();
+    console.log("init");
   },
   attachDom: function(cssQuery, key, dom){
     dom = dom || document;
@@ -46,7 +47,7 @@ Page.prototype = {
           fnArray.push({
             backFn:fn,
             propation:propation,
-            dnFn:doFn
+            doFn:doFn
           });
         }
       } else {
@@ -55,7 +56,7 @@ Page.prototype = {
           fnArray:[{
             backFn:fn,
             propation:propation,
-            dnFn:doFn
+            doFn:doFn
           }]
         })
       }
@@ -67,7 +68,7 @@ Page.prototype = {
           fnArray:[{
             backFn:fn,
             propation:propation,
-            dnFn:doFn
+            doFn:doFn
           }]
         }]
       })
@@ -95,14 +96,16 @@ Page.prototype = {
   _addEventListeners:function(){
     var domList = this.domList, eventList = this.eventList;
     console.log(eventList);
-    for(var i = 0, len = eventList.lenght; i < len; i++){
+    for(var i = 0, len = eventList.length; i < len; i++){
       var eventObj = eventList[i];
       var dom = domList[eventObj.key];
       var eventArray = eventObj.eventArray;
-      for(var j = 0, length = eventArray.length; j<length; j++){
+      console.log(eventArray);
+      for(var j = 0, length = eventArray.length; j < length; j++){
          var methodEventObj = eventArray[j];
          var key = methodEventObj.method;
          var fnArray = methodEventObj.fnArray;
+         console.log(fnArray)
          for(var ii = 0; ii<fnArray.length; ii++){
            dom.addEventListener(key, fnArray[ii].doFn, fnArray[ii].propation);
          }
@@ -117,7 +120,8 @@ Page.prototype = {
       var eventArray = eventObj.eventArray;
       for(var j = 0, length = eventArray.length; j<length;j++){
         var methodEventObj = eventArray[j];
-        var key = methodEventObj.fnArray;
+        var key = methodEventObj.method;
+        var fnArray = methodEventObj.fnArray;
         for(var ii = 0; ii < fnArray.length; ii++){
           dom.removeEventListener(key, fnArray[ii].doFn, fnArray[ii].propation);
         }
