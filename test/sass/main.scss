@@ -1,0 +1,150 @@
+body{
+  margin:0;
+  overflow: hidden;
+  background: #ccc;
+}
+
+header{
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  top:0;
+}
+
+header>.header-back{
+  position: absolute;
+  left: 10px;
+  top: 14px;
+  width: 0;
+  height: 0;
+  border: 8px solid #F2F2FC;
+  border-color: #CCCCCC #000000 #CCCCCC #CCCCCC;
+}
+
+.index-container{
+  width:100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.index-container>.bkImg{
+  width: 100%;
+  height: 100%;
+}
+
+.index-container>.loginTitle{
+  position: absolute;
+  top:calc(22% + 26vw);
+  width: 100%;
+  font-size: 14px;
+  color: black;
+  text-align: center;
+  z-index: 1;
+  font-weight: bolder;
+}
+
+.index-container>.btn-group{
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  bottom: 100px;
+}
+
+.index-container>.btn-group>.btn{
+  padding: 5px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  color: white;
+}
+.btn[data-action="register"]{
+  background: rgba(255, 165, 0, 0.5);
+  margin-right: 35px;
+}
+.btn[data-action="login"]{
+  background: rgba(0, 0, 255, 0.5);
+  margin-left: 35px;
+}
+
+.register-container, .login-container{
+  margin-top: 40px;
+  min-height: calc(100vh - 40px);
+}
+
+.register-form, .login-form{
+  padding: 20px;
+  font-size: 14px;
+}
+
+.input-group[data-layout="relative"]{
+  position: relative;
+}
+
+.input-group{
+  margin-bottom: 16px;
+  clear: both;
+}
+
+.input-group[data-layout="center"]{
+  text-align: center;
+}
+
+.input-group>input{
+  display: block;
+  width: 100%;
+  line-height: 40px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding-left: 8px;
+  box-sizing: border-box;
+}
+
+button.btn.btn-block{
+  display: block;
+  width: 100%;
+}
+
+.input-group>button.btn{
+  line-height: 40px;
+  border:none;
+  background: #4284f4;
+  color: white;
+  letter-spacing: 4px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.input-group>input[type="checkbox"]{
+  vertical-align: bottom;
+}
+.input-group>input{
+  display: block;
+  width: 100%;
+  line-height: 40px;
+  border:1px solid lightgray;
+  border-radius: 8px;
+  padding-left: 8px;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"]+label{
+  -webkit-user-select:none;
+  user-select: none;
+}
+
+input[type="checkbox"]:checked+label::before{
+  background: url();
+}
+
+input[type="checkbox"]+label::before{
+
+}
+
+.goal-container h1{
+  text-align: center;
+}

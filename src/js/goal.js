@@ -1,3 +1,3 @@
-var goalPage = new Page("goal");
-goalPage.getDomObj = function(){};
-goalPage.removeDomObj = function(){};
+var goalPage = App.createPage("goal",{
+  getDomObj : function(){}
+});

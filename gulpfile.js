@@ -42,7 +42,7 @@ task('html', function (cb) {
 });
 
 task('js', function (cb) {
-    src(['src/js/*.js','src/html/*.js'])
+    src('src/js/*.js')
     .pipe(plumber())
     .pipe(gulpif(condition, uglify()))
     .pipe(dest('dist/js'))
@@ -128,7 +128,7 @@ task('server',series('clean','watch',parallel('config','css','js','image','html'
     connect.server({
         root: 'dist',
         host:'localhost',
-        port: 8000,
+        port: 9000,
         livereload: true,
         middleware: function(connect, opt) {
             return [
