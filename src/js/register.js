@@ -1,4 +1,4 @@
-var registerPage = App.createPage("register",{
+var registerPage = App.createPage("register","register",{
   getDomObj : function(dom){
     this.attachDom("[data-action='back']","backBtn",dom)
         .attachDom(".register-form","form",dom)

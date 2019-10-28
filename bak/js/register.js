@@ -1,7 +1,7 @@
-var loginPage = App.createPage("login","login",{
+var registerPage = App.createPage("register",{
   getDomObj : function(dom){
     this.attachDom("[data-action='back']","backBtn",dom)
-        .attachDom(".login-form","form",dom)
+        .attachDom(".register-form","form",dom)
         .attachEvent("backBtn","click",this.clickBackHander,false)
         .attachEvent("form","submit",this.formSubmitHandler, false);
   },
@@ -13,6 +13,9 @@ var loginPage = App.createPage("login","login",{
     var form = ev.target;
     var name = form.name.value;
     var password = form.password.value;
-    app.render(goalPage);
+    var agree = form.agree.checked;
+    if(agree){
+      app.render(goalPage);
+    }
   }
 });

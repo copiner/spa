@@ -1,39 +1,35 @@
-function Page(title, url){
-  this.title = title;
-  this.url = url;
+function Page(id){
+  this.html = document.getElementById(id).textContent;
   this.domList = {};
   this.eventList = [];
 }
 
 Page.prototype = {
-  // render: function(dom){
-  //   //console.log(this.html)
-  //   this.domElement = dom;
-  //   this.domElement.innerHTML = this.html;
-  //   //dom.innerHTML = this.html;
-  // },
+  render: function(dom){
+    this.domElement = dom;
+    this.domElement.innerHTML = this.html;
+    //dom.innerHTML = this.html;
+  },
   getDomObj:function(){
-    console.error("need to be override");
+    console.error("must be override");
   },
   removeDomObj:function(){//实例中手动重写
-    console.error("need to be override");
+    console.error("must be override");
   },
   _dispose:function(){
     this._removeEventListeners();
     this._removeDom();
   },
   _initialize:function(container){
-        // console.log(container)
-        // console.log(this.html)
     container.innerHTML = this.html;
     this.getDomObj(container);
     this._addEventListeners();
     console.log("init");
   },
   attachDom: function(cssQuery, key, dom){
-    console.log(dom)
     dom = dom || document;
     this.domList[key] = dom.querySelector(cssQuery);
+    console.log(this.domList)
     return this;
   },
   attachEvent:function(key,eventStr,fn,propation,doFn){
@@ -111,7 +107,7 @@ Page.prototype = {
          var fnArray = methodEventObj.fnArray;
          console.log(fnArray)
          for(var ii = 0; ii<fnArray.length; ii++){
-           //dom.addEventListener(key, fnArray[ii].doFn, fnArray[ii].propation);
+           dom.addEventListener(key, fnArray[ii].doFn, fnArray[ii].propation);
          }
       }
     }

@@ -1,4 +1,4 @@
-var loginPage = App.createPage("login","login",{
+var loginPage = App.createPage("login",{
   getDomObj : function(dom){
     this.attachDom("[data-action='back']","backBtn",dom)
         .attachDom(".login-form","form",dom)

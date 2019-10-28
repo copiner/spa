@@ -1,3 +1,3 @@
-var goalPage = App.createPage("goal",{
+var goalPage = App.createPage("goal","goal",{
   getDomObj : function(){}
 });

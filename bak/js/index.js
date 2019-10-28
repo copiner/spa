@@ -1,5 +1,4 @@
-var indexPage = App.createPage("index","index",{
-
+var indexPage = App.createPage("index",{
   getDomObj : function(dom){
     this.attachDom(".btn-group","btnGroup",dom)
         .attachEvent("btnGroup","click",this.clickHandler, false);
