@@ -1,0 +1,104 @@
+body.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+.app-change,
+.app-back {
+    box-sizing: border-box;
+    background: white;
+}
+.app-change {
+    width: 100%;
+    min-height: 100%;
+}
+.app-back {
+    width: 100%;
+    min-height: 100%;
+    position: absolute;
+    z-index: -1;
+    transform: translate(100vw, 0);
+    top: 0;
+}
+.change-state {
+    overflow: hidden;
+}
+
+[data-action="page-in"],
+[data-action="page-in-reverse"] {
+    position: absolute;
+    box-sizing: border-box;
+    background: white;
+    animation: page-in .25s forwards;
+}
+[data-action="page-in-reverse"] {
+    position: absolute;
+    box-sizing: border-box;
+    background: white;
+    animation: page-in .10s forwards;
+    top: 0px;
+}
+
+[data-action="page-in"] {
+    z-index: 2;
+}
+[data-action="page-out-reverse"] {
+    z-index: -1;
+}
+
+[data-action="page-in-reverse"] {
+    animation: page-in-reverse .25s forwards;
+}
+
+[data-action="page-out"] {
+    animation: page-out .1s forwards ease-out;
+}
+
+[data-action="page-out-reverse"] {
+    animation: page-out-reverse .25s forwards ease-out;
+}
+@keyframes page-in {
+    0% {
+        transform: translate(100vw, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes page-in-reverse {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100vw, 0);
+        opacity: 0.5;
+    }
+}
+
+@keyframes page-out {
+    0% {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+    100% {
+        opacity: 0.5;
+        transform: scale(0.5, 0.5);
+    }
+}
+
+@keyframes page-out-reverse {
+    0% {
+        opacity: 0.5;
+        transform: scale(0.5, 0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+}

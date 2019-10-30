@@ -50,6 +50,13 @@ task('js', function (cb) {
     cb();
 });
 
+task('view', function (cb) {
+  src('src/html/*.html')
+  .pipe(dest('dist/html'))
+  .pipe(connect.reload());
+  cb();
+})
+
 task('config', function (cb) {
   src('src/config/*')
   .pipe(dest('dist/config'));
@@ -68,9 +75,9 @@ task('image', function (cb) {
 task('watch', function(cb){//监控
 
   let watcher = watch(
-    ['./src/js/*.js','./src/sass/*.scss','./src/html/*.js',,'./src/index.html'],
+    ['./src/js/*.js','./src/sass/*.scss','./src/html/*.html','./src/index.html'],
     {events:['change','add','unlink']},
-    parallel('css','js','html')
+    parallel('css','js','view','html')
   );
 
   watcher.on('change', function(path, stats) {
@@ -115,7 +122,7 @@ task('clean', () => {
 
 
 //生成环境
-task('build', series('clean', parallel('config','css','js','image','html'),function(cb){
+task('build', series('clean', parallel('config','css','js','image','view','html'),function(cb){
   console.log(`
       -----------------------------
         build tasks are successful
@@ -124,10 +131,10 @@ task('build', series('clean', parallel('config','css','js','image','html'),funct
 }));
 
 //开发环境
-task('server',series('clean','watch',parallel('config','css','js','image','html'),function(){
+task('server',series('clean','watch',parallel('config','css','js','image','view','html'),function(){
     connect.server({
         root: 'dist',
-        host:'localhost',
+        host:'192.168.1.77',
         port: 9000,
         livereload: true,
         middleware: function(connect, opt) {

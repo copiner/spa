@@ -1,11 +1,18 @@
 var registerPage = App.createPage("register","register",{
+  render: function (fn) {
+      this.fetch("../html/register.html", function (text) {
+          fn(text);
+      });
+  },
   getDomObj : function(dom){
     this.attachDom("[data-action='back']","backBtn",dom)
         .attachDom(".register-form","form",dom)
-        .attachEvent("backBtn","click",this.clickBackHander,false)
-        .attachEvent("form","submit",this.formSubmitHandler, false);
+        .attachDom(".register-container", "container", dom)
+        .attachSlide("container", this.startFn, this.moveFn, this.endFn)
+        .attachTap("backBtn", this.tapBackHandler, false)
+        .attachEvent("form", "submit", this.formSubmitHandler, false);
   },
-  clickBackHander : function(ev){
+  tapBackHandler : function(ev){
     app.render(indexPage);
   },
   formSubmitHandler : function(ev){
@@ -17,5 +24,13 @@ var registerPage = App.createPage("register","register",{
     if(agree){
       app.render(goalPage);
     }
+  },
+  startFn: function (ev) {},
+  moveFn: function (ev) {},
+  endFn: function (ev) {
+      var speed = 1000 * ev.deltaX / ev.elapsed;
+      if (speed > 200) {
+          app.render(indexPage);
+      }
   }
 });
