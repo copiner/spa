@@ -136,11 +136,13 @@ task('server',series('clean','watch',parallel('config','css','js','image','view'
         root: 'dist',
         host:'192.168.1.77',
         port: 9000,
+        name:'spa',
         livereload: true,
+        fallback:"http://192.168.1.77:9000/index.html",
         middleware: function(connect, opt) {
             return [
                 proxy('/api',  {
-                    target: 'http://192.168.23.142:8089/gateway',
+                    target: 'http://192.168.1.77:9000/',
                     changeOrigin:true,
                     headers: {
                          "Connection": "keep-alive"

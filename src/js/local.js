@@ -10,8 +10,7 @@ History.prototype = {
           var nextIndex = this.index + 1;
           this.history.splice(nextIndex, this.len - nextIndex, str);
           this.index = nextIndex;
-      }
-      else {
+      } else {
           this.history.push(str);
           this.index = 0;
       }
@@ -21,8 +20,7 @@ History.prototype = {
   replaceState: function (str) {
       if (this.index) {
           this.history.splice(this.index, 1, str);
-      }
-      else {
+      } else {
           this.history.push(str);
           this.index = 0;
       }
@@ -44,26 +42,22 @@ History.prototype = {
               next: "",
               prev: ""
           };
-      }
-      else if (this.history.length === 1) {
+      } else if (this.history.length === 1) {
           return {
               next: "",
               prev: ""
           };
-      }
-      else if (this.index === 0) {
+      } else if (this.index === 0) {
           return {
               next: this.history[1],
               prev: ""
           };
-      }
-      else if (this.index === len - 1) {
+      } else if (this.index === len - 1) {
           return {
               next: "",
               prev: this.history[len - 2]
           }
-      }
-      else {
+      } else {
           return {
               next: this.history[this.index + 1],
               prev: this.history[this.index - 1]
