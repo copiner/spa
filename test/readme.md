@@ -1,0 +1,1 @@
+The most significant thing with these history API's is that they don't reload the page. In the past, the only way to change the URL was to change the window.location which always reloaded the page. Except, if all you changed was the hash (like how clicking a <a href="#target">link</a> doesn't reload the page).

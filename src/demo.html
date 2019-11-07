@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SPA</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  </head>
+  <body>
+    <p>
+      <input type="button" class="j_index" value="INDEX"/>
+      <input type="button" class="j_login" value="LOGIN"/>
+      <input type="button" class="j_register" value="REGISTER"/>
+    </p>
+    <script>
+    //History API最主要的功能就是不重新加载页面。以往我们只能通过改变window.location的值来修改当前页面的URL，不过这会导致整个页面被重新加载。如果你修改的只是URL中的hash，则不会导致页面被刷新
+      console.log(window.location)
+      console.log(window.history);
+      //history.pushState([data], [title], [url]);
+      /*
+      第一个参数用来传递我们需要的数据，当页面的状态发生变化时我们可以接收到该数据。
+      如用户点击浏览器的后退和向前按钮。需要注意的是在Firefox中只允许传递最多640K的数据。
+
+      第二个参数title是一个字符串，不过截止到目前，几乎所有的浏览器都忽略该参数
+
+      最后一个参数是我们想要替换的URL
+
+      */
+
+      var index = document.querySelector(".j_index");
+      var login = document.querySelector(".j_login");
+      index.onclick = function(){
+        history.replaceState(null,null,'hello');
+        console.log(window.location.pathname);
+      }
+
+      login.onclick = function(){
+        history.pushState(null,null,'world');
+        console.log(window.location.pathname);
+      }
+
+    </script>
+  </body>
+</html>

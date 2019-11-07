@@ -75,7 +75,7 @@ task('image', function (cb) {
 task('watch', function(cb){//监控
 
   let watcher = watch(
-    ['./src/js/*.js','./src/sass/*.scss','./src/html/*.html','./src/index.html'],
+    ['./src/js/*.js','./src/sass/*.scss','./src/html/*.html','./src/*.html'],
     {events:['change','add','unlink']},
     parallel('css','js','view','html')
   );
