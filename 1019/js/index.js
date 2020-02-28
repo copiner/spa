@@ -1,5 +1,5 @@
 var indexPage = new Page("index");
-console.log(indexPage)
+// console.log(indexPage)
 indexPage.getDomObj = function(){
   this.btnGroup = this.domElement.querySelector(".btn-group");
   this.btnGroup.addEventListener("click",this.clickHandler, false);
@@ -26,5 +26,8 @@ indexPage.clickHandler = function(ev){
 
   }
 }
+
+
+//初始化首页
 var rootDiv = document.querySelector(".root");
 indexPage.init(rootDiv);

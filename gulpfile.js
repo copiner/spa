@@ -7,6 +7,7 @@ const imagemin = require('gulp-imagemin');
 const gulpif = require('gulp-if');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
+const concat = require('gulp-concat');
 
 const connect = require('gulp-connect');
 const fileinclude = require('gulp-file-include');
@@ -17,9 +18,10 @@ const del = require('del');
 var env = process.env.NODE_ENV || 'development';
 var condition = env === 'production';
 
+const staticpath = "./1019/";
 
 task('css', function (cb) {
-    src('src/sass/*.scss')
+    src(staticpath+'sass/*.scss')
     .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
     .pipe(gulpif(condition, cleanCSS()))
@@ -29,7 +31,7 @@ task('css', function (cb) {
 });
 
 task('html', function (cb) {
-    src('src/*.html')
+    src(staticpath+'*.html')
     .pipe(fileinclude({
         prefix: '@@',
         basepath: '@file'
@@ -42,8 +44,9 @@ task('html', function (cb) {
 });
 
 task('js', function (cb) {
-    src('src/js/*.js')
+    src(staticpath+'js/*.js')
     .pipe(plumber())
+    .pipe(concat({ path: 'business.js', stat: { mode: 0666 }}))
     .pipe(gulpif(condition, uglify()))
     .pipe(dest('dist/js'))
     .pipe(connect.reload());
@@ -51,20 +54,26 @@ task('js', function (cb) {
 });
 
 task('view', function (cb) {
-  src('src/html/*.html')
+  src(staticpath+'html/*.html')
   .pipe(dest('dist/html'))
   .pipe(connect.reload());
   cb();
 })
 
 task('config', function (cb) {
-  src('src/config/*')
+  src(staticpath+'config/*')
   .pipe(dest('dist/config'));
   cb();
 })
 
+task('lib', function (cb) {
+  src(staticpath+'lib/*')
+  .pipe(dest('dist/lib'));
+  cb();
+})
+
 task('image', function (cb) {
-    src('src/imgs/*')
+    src(staticpath+'imgs/*')
     .pipe(plumber())
     .pipe(gulpif(condition, imagemin()))
     .pipe(dest('dist/imgs'));
@@ -75,9 +84,9 @@ task('image', function (cb) {
 task('watch', function(cb){//监控
 
   let watcher = watch(
-    ['./src/js/*.js','./src/sass/*.scss','./src/html/*.html','./src/*.html'],
-    {events:['change','add','unlink']},
-    parallel('css','js','view','html')
+    ['js/*.js','lib/*.js','/sass/*.scss','/html/*.html','/*.html'],
+    {events:['change','add','unlink'],cwd:staticpath},//cwd : change working directory
+    parallel('css','js','lib','view','html')
   );
 
   watcher.on('change', function(path, stats) {
@@ -109,29 +118,35 @@ task('watch', function(cb){//监控
 });
 
 
-task('clean', () => {
-  return del('./dist').then(() => {
-    console.log(`
-        -----------------------------
-          clean tasks are successful
-        -----------------------------`);
-  }).catch((e) =>{
-    console.log(e);
-  })
+
+task('clean', (cb) => {
+
+  (async () => {
+  	const deletedPaths = await del(['dist/*/'], {dryRun: true});
+
+  	console.log(`
+      -----------------------
+      ${ deletedPaths }
+      ------------------------`
+    );
+
+    cb();
+  })();
+
 });
 
 
 //生成环境
-task('build', series('clean', parallel('config','css','js','image','view','html'),function(cb){
-  console.log(`
-      -----------------------------
-        build tasks are successful
-      -----------------------------`);
-      cb();
+task('build', series('clean', parallel('config','lib','css','js','image','view','html'),function(cb){
+  console.log(
+    `-----------------------------
+      build tasks are successful
+    -----------------------------`);
+    cb();
 }));
 
 //开发环境
-task('server',series('clean','watch',parallel('config','css','js','image','view','html'),function(){
+task('server',series('clean','watch',parallel('config','lib','css','js','image','view','html'),function(){
     connect.server({
         root: 'dist',
         host:'192.168.1.77',
