@@ -20,4 +20,5 @@ var indexPage = App.createPage("index",{
 });
 
 //初始化
+var app = new App();
 app.render(indexPage);

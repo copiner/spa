@@ -18,7 +18,7 @@ const del = require('del');
 var env = process.env.NODE_ENV || 'development';
 var condition = env === 'production';
 
-const staticpath = "./1019/";
+const staticpath = "./1024/";
 
 task('css', function (cb) {
     src(staticpath+'sass/*.scss')

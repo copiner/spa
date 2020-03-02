@@ -17,8 +17,9 @@ App.prototype = {
 }
 
 App.extend = function(obj, options){
+  console.log(options);
   options = options || {};
-  for (var key in options){
+  for (var key in options){//Object.keys(arr)
     var desptor = Object.getOwnPropertyDescriptor(options, key);
     if(desptor.value) {
       obj[key] = desptor.value
@@ -41,5 +42,3 @@ App.createPage = function(id, options){
   App.extend(page, options);
   return page;
 }
-
-var app = new App();

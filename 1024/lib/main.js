@@ -11,10 +11,10 @@ Page.prototype = {
     //dom.innerHTML = this.html;
   },
   getDomObj:function(){
-    console.error("must be override");
+    console.error("gdom must be override");
   },
   removeDomObj:function(){//实例中手动重写
-    console.error("must be override");
+    console.error("rdom must be override");
   },
   _dispose:function(){
     this._removeEventListeners();
@@ -24,12 +24,12 @@ Page.prototype = {
     container.innerHTML = this.html;
     this.getDomObj(container);
     this._addEventListeners();
-    console.log("init");
+    //console.log("init");
   },
   attachDom: function(cssQuery, key, dom){
     dom = dom || document;
     this.domList[key] = dom.querySelector(cssQuery);
-    console.log(this.domList)
+    //console.log(this.domList)
     return this;
   },
   attachEvent:function(key,eventStr,fn,propation,doFn){
@@ -95,17 +95,17 @@ Page.prototype = {
   },
   _addEventListeners:function(){
     var domList = this.domList, eventList = this.eventList;
-    console.log(eventList);
+    //console.log(eventList);
     for(var i = 0, len = eventList.length; i < len; i++){
       var eventObj = eventList[i];
       var dom = domList[eventObj.key];
       var eventArray = eventObj.eventArray;
-      console.log(eventArray);
+      //console.log(eventArray);
       for(var j = 0, length = eventArray.length; j < length; j++){
          var methodEventObj = eventArray[j];
          var key = methodEventObj.method;
          var fnArray = methodEventObj.fnArray;
-         console.log(fnArray)
+         //console.log(fnArray)
          for(var ii = 0; ii<fnArray.length; ii++){
            dom.addEventListener(key, fnArray[ii].doFn, fnArray[ii].propation);
          }

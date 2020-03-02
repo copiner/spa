@@ -129,8 +129,7 @@ Page.prototype = {
       var that = this;
       if (self.fetch[url]) {
           bk.call(this, self.fetch[url]);
-      }
-      else {
+      } else {
           var xhr = new XMLHttpRequest();
           xhr.open("GET", url, true);
           xhr.onload = function () {
